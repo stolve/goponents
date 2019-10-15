@@ -13,17 +13,17 @@ import {
 })
 export class GoIconButtonComponent implements OnChanges {
 
-  iconClass: string = '';
-
   @Input() buttonDisabled: boolean;
   @Input() buttonIcon: string;
   @Input() buttonSize: string = 'small';
   @Input() buttonTitle: string;
+  @Input() buttonIconClass: string;
+  @Input() buttonIconModifier: string;
 
   @Output() handleClick: EventEmitter<void> = new EventEmitter();
 
   ngOnChanges(): void {
-    this.iconClass = 'go-icon--' + this.buttonSize;
+    this.buttonIconClass = 'go-icon--' + this.buttonSize;
   }
 
   clicked(): void {
