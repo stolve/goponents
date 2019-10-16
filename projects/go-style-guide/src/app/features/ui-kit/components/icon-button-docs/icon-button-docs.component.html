@@ -165,5 +165,35 @@
       </section>
     </ng-container>
   </go-card>
+
+  <go-card class="go-column go-column--100" id="button-title">
+    <ng-container go-card-header>
+      <h2 class="go-heading-5">Button Variant</h2>
+    </ng-container>
+    <ng-container go-card-content>
+      <section class="go-container">
+        <div class="go-column go-column--50">
+          <code [highlight]="variantExample"></code>
+        </div>
+        <div class="go-column go-column--50">
+          <div class="go-column">
+            <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="primary"></go-icon-button>
+          </div>
+          <div class="go-column">
+            <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="secondary"></go-icon-button>
+          </div>
+          <div class="go-column">
+            <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="tertiary"></go-icon-button>
+          </div>
+          <div class="go-column">
+            <go-icon-button (handleClick)="testClick()" buttonIcon="delete" buttonVariant="negative"></go-icon-button>
+          </div>
+          <div class="go-column">
+            <go-icon-button (handleClick)="testClick()" buttonIcon="live_help" buttonVariant="neutral"></go-icon-button>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+  </go-card>
 </div>
 

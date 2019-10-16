@@ -1,6 +1,20 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
+@mixin disabled-states($bg, $color, $color-opacity: .7) {
+  @if ($color == 'light') {
+    @if ($color-opacity == .7) {
+      color: rgba($theme-dark-color, .7);
+    } @else {
+      color: rgba($theme-dark-color, $color-opacity);
+    }
+  } @else {
+    color: rgba($theme-light-color, .4);
+  }
+
+  background: rgba($bg, .4);
+}
+
 .go-icon-button {
   @include transition(background-color);
 
@@ -23,5 +37,107 @@
 
   &:active {
     background: transparent;
+  }
+}
+
+// Variations
+//=========================
+.go-icon-button--primary,
+.go-icon-button--negative,
+.go-icon-button--neutral {
+  color: $theme-dark-color;
+}
+
+.go-icon-button--primary {
+  background: $ui-color-positive;
+
+  &:hover,
+  &:focus {
+    background: $ui-color-positive-hover;
+  }
+
+  &:active {
+    background: $ui-color-positive-active;
+  }
+
+  &:disabled:not(.go-icon-button--loading) {
+    @include disabled-states($ui-color-positive, 'light');
+
+    &:hover,
+    &:focus {
+      @include disabled-states($ui-color-positive, 'light');
+    }
+  }
+}
+
+.go-icon-button--secondary {
+  border: 1px solid $theme-light-border;
+}
+
+.go-icon-button--secondary,
+.go-icon-button--tertiary {
+  background: $theme-light-bg;
+  color: $theme-light-color;
+
+  &:hover,
+  &:focus {
+    background: $theme-light-bg-hover;
+  }
+
+  &:active {
+    background: $theme-light-bg-active;
+  }
+
+  &:disabled:not(.go-icon-button--loading) {
+    @include disabled-states($theme-light-bg, 'dark');
+
+    &:hover,
+    &:focus {
+      @include disabled-states($theme-light-bg, 'dark');
+    }
+  }
+}
+
+.go-icon-button--negative {
+  background: $ui-color-negative;
+
+  &:hover,
+  &:focus {
+    background: $ui-color-negative-hover;
+  }
+
+  &:active {
+    background: $ui-color-negative-active;
+  }
+
+  &:disabled:not(.go-icon-button--loading) {
+    @include disabled-states($ui-color-negative, 'light');
+
+    &:hover,
+    &:focus {
+      @include disabled-states($ui-color-negative, 'light');
+    }
+  }
+}
+
+.go-icon-button--neutral {
+  background: $ui-color-neutral;
+
+  &:hover,
+  &:focus {
+    background: $ui-color-neutral-hover;
+  }
+
+  &:active {
+    background: $ui-color-neutral-active;
+  }
+
+  &:disabled:not(.go-icon-button--loading) {
+    @include disabled-states($ui-color-neutral, 'light');
+
+    &:hover,
+    &:focus {
+      @include disabled-states($ui-color-neutral, 'light');
+    }
   }
 }

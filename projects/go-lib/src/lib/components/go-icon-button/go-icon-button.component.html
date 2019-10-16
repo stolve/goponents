@@ -4,11 +4,11 @@
   [disabled]="buttonDisabled"
   [attr.title]="buttonTitle"
   type="button"
+  [ngClass]="classObject"
 >
   <go-icon
     [icon]="buttonIcon"
-    [iconClass]="buttonIconClass"
-    [iconModifier]="buttonIconModifier"
+    [iconClass]="iconClass"
     class="go-icon-button__icon"
   ></go-icon>
 </button>

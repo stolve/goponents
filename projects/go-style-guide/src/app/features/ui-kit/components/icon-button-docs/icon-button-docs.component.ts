@@ -12,8 +12,7 @@ export class IconButtonDocsComponent {
   @Input() buttonIcon: string;
   @Input() buttonSize: string = 'small';
   @Input() buttonTitle: string;
-  @Input() buttonIconModifier: string;
-  @Input() buttonIconClass: string;
+  @Input() buttonVariant: string;
 
   @Output() handleClick: EventEmitter<void> = new EventEmitter();
   `;
@@ -44,6 +43,18 @@ export class IconButtonDocsComponent {
   <go-icon-button (handleClick)="testClick()" buttonIcon="school" buttonTitle="School"></go-icon-button>
 
   <go-icon-button (handleClick)="testClick()" buttonIcon="work" buttonTitle="Work"></go-icon-button>
+  `;
+
+  variantExample: string = `
+  <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="primary"></go-icon-button>
+
+  <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="secondary"></go-icon-button>
+
+  <go-icon-button (handleClick)="testClick()" buttonIcon="home" buttonVariant="tertiary"></go-icon-button>
+
+  <go-icon-button (handleClick)="testClick()" buttonIcon="delete" buttonVariant="negative"></go-icon-button>
+
+  <go-icon-button (handleClick)="testClick()" buttonIcon="live_help" buttonVariant="neutral"></go-icon-button>
   `;
 
   public testClick(): void {
