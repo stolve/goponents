@@ -17,8 +17,8 @@ export class GoIconButtonComponent implements OnChanges {
   @Input() buttonIcon: string;
   @Input() buttonSize: string = 'small';
   @Input() buttonTitle: string;
-  @Input() buttonIconClass: string;
   @Input() buttonIconModifier: string;
+  @Input() buttonIconClass: string;
 
   @Output() handleClick: EventEmitter<void> = new EventEmitter();
 
