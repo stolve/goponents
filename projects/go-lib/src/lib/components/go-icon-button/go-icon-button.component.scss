@@ -141,3 +141,86 @@
     }
   }
 }
+
+// Dark Buttons (only applies to secondary/tertiary)
+//==================================
+.go-icon-button--dark {
+  &.go-icon-button--secondary,
+  &.go-icon-button--tertiary {
+    background: $theme-dark-bg;
+    color: $theme-dark-color;
+
+    &:hover,
+    &:focus {
+      background: $theme-dark-bg-hover;
+    }
+
+    &:active {
+      background: $theme-dark-bg-active;
+    }
+
+    &:disabled:not(.go-icon-button--loading) {
+      @include disabled-states($theme-dark-bg, 'light', .4);
+
+      &:hover,
+      &:focus {
+        @include disabled-states($theme-dark-bg, 'light', .4);
+      }
+    }
+  }
+}
+
+// Loader
+//==================================
+.go-icon-button__loader {
+  align-items: center;
+  border-radius: $global-radius;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: -#{ $column-gutter--half } -#{ $column-gutter };
+  position: absolute;
+  width: 100%;
+
+  &.go-icon-button__loader--primary {
+    background: $ui-color-positive;
+  }
+
+  &.go-icon-button__loader--light {
+    background: $theme-light-bg;
+  }
+
+  &.go-icon-button__loader--dark {
+    background: $theme-dark-bg;
+  }
+
+  &.go-icon-button__loader--negative {
+    background: $ui-color-negative;
+  }
+
+  &.go-icon-button__loader--neutral {
+    background: $ui-color-neutral;
+  }
+}
+
+.go-icon-button__loader-container {
+  height: calc(#{ $column-gutter } * 1.5);
+}
+
+// Button Group
+//=========================
+::ng-deep .go-icon-button-group {
+  display: inline-flex;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+}
+
+::ng-deep .go-icon-button-group__item {
+  margin-right: .5rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+

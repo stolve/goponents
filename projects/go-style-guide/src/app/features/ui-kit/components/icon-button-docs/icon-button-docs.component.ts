@@ -57,6 +57,12 @@ export class IconButtonDocsComponent {
   <go-icon-button (handleClick)="testClick()" buttonIcon="live_help" buttonVariant="neutral"></go-icon-button>
   `;
 
+  darkButtonExample: string = `
+  <go-button (handleClick)="testClick()" [useDarkTheme]="true">
+    Primary
+  </go-button>
+  `;
+
   public testClick(): void {
     alert('Button clicked!');
   }
