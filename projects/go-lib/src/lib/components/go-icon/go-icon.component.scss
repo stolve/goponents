@@ -31,23 +31,20 @@ $icon-sizes: (small: 1rem, medium: 1.5rem, large: 2rem);
   font-feature-settings: 'liga';
 }
 
-.go-icon--dark {
-  color: $theme-light-color;
-
-  &.go-icon--disabled {
-    color: rgba($theme-light-color, .7);
-  }
+.go-icon--light {
+  color: $base-light-secondary;
 }
 
-.go-icon--light,
-.go-icon--primary,
-.go-icon--negative,
-.go-icon--neutral {
-  color: $theme-dark-color;
+.go-icon--positive {
+  color: $ui-color-positive ;
+}
 
-  &.go-icon--disabled {
-    color: rgba($theme-dark-color, .7);
-  }
+.go-icon--negative {
+  color: $ui-color-negative;
+}
+
+.go-icon--neutral {
+  color: $ui-color-neutral;
 }
 
 @each $name, $size in $icon-sizes {

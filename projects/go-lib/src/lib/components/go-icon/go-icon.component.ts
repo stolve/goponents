@@ -11,7 +11,6 @@ export class GoIconComponent implements OnChanges {
   @Input() icon: string;
   @Input() iconModifier: string;
   @Input() iconClass: string;
-  @Input() disabled: boolean = false;
 
   ngOnChanges(): void {
     this.classObject = {};
@@ -22,10 +21,6 @@ export class GoIconComponent implements OnChanges {
 
     if (this.iconClass) {
       this.classObject[this.iconClass] = true;
-    }
-
-    if (this.disabled) {
-      this.classObject['go-icon--disabled'] = true;
     }
   }
 }
