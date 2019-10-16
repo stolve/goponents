@@ -13,6 +13,8 @@ export class IconButtonDocsComponent {
   @Input() buttonSize: string = 'small';
   @Input() buttonTitle: string;
   @Input() buttonVariant: string;
+  @Input() isProcessing: boolean = false;
+  @Input() useDarkTheme: boolean = false;
 
   @Output() handleClick: EventEmitter<void> = new EventEmitter();
   `;
