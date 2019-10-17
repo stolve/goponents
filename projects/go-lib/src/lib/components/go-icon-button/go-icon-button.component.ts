@@ -19,7 +19,7 @@ export class GoIconButtonComponent implements OnChanges, OnInit {
   @Input() isProcessing: boolean = false;
   @Input() useDarkTheme: boolean = false;
 
-  @Output() handleClick: EventEmitter<void> = new EventEmitter();
+  @Output() handleClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.iconClass = 'go-icon--' + this.buttonSize;
