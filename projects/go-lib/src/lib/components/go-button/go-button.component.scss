@@ -52,6 +52,7 @@
 
 .go-button--primary {
   background: $ui-color-primary;
+  border: 1px solid $ui-color-primary;
 
   &:hover,
   &:focus {
@@ -74,6 +75,10 @@
 
 .go-button--secondary {
   border: 1px solid $theme-light-border;
+}
+
+.go-button--tertiary {
+  border: 1px solid $theme-light-bg;
 }
 
 .go-button--secondary,
@@ -102,6 +107,7 @@
 
 .go-button--negative {
   background: $ui-color-negative;
+  border: 1px solid $ui-color-negative;
 
   &:hover,
   &:focus {
@@ -124,6 +130,7 @@
 
 .go-button--neutral {
   background: $ui-color-neutral;
+  border: 1px solid $ui-color-neutral;
 
   &:hover,
   &:focus {
