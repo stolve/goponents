@@ -101,3 +101,25 @@ After step 3 it became clear the mixin was fighting the secondary button's desig
 
 **Why:**
 The `::ng-deep` block inside `.go-off-canvas` was overriding `.go-form__label` padding to create spacing between rows and between labels and their inputs. Both values were set to `$column-gutter` (1rem), which was far too large — the default in `_forms.scss` is `.375rem`. The `:first-child` rule meant to suppress the top gap on the first field was silently ignored due to the `1 rem` typo, so every label including the first got the full 1rem top padding, compounding the problem.
+
+---
+
+## Forms Overview: Replace Raw Checkbox/Radio Markup with Angular Components
+
+**Date:** 2026-06-18  
+**Files:**
+- `projects/go-style-guide/src/app/features/ui-kit/components/form-docs/components/forms-overview/forms-overview.component.html`
+- `projects/go-style-guide/src/app/features/ui-kit/components/form-docs/components/forms-overview/forms-overview.component.ts`
+
+### Replace raw HTML fieldset demos with `go-checkbox-group` / `go-radio-group`
+
+**What changed:**
+- Removed the raw `<input class="go-form__checkbox">` + sibling `<label>` pattern from the CSS Reference section's Checkbox & Radio demo.
+- Replaced with actual `go-checkbox-group` / `go-checkbox` and `go-radio-group` / `go-radio-button` Angular components, showing default, disabled, error, and dark states for each.
+- Added 8 `FormGroup`/`FormControl` properties to the component class for the CSS reference demos (`cssCheckboxDefault`, `cssCheckboxDisabled`, `cssCheckboxError`, `cssCheckboxDark`, `cssRadioDefault`, `cssRadioDisabled`, `cssRadioError`, `cssRadioDark`).
+- Disabled states driven by calling `.disable()` on the control in the constructor; error states driven by `Validators.requiredTrue` / `Validators.required` + `markAsTouched()`.
+- Updated the code snippet strings (`checkboxModifiers`, new `radioModifiers`) to show correct component markup instead of raw HTML.
+- Split the combined "Checkbox & Radio Modifiers" card into two separate card pairs: **Checkbox Modifiers** (`id="css-checkbox-modifiers"`) and **Radio Modifiers** (`id="css-radio-modifiers"`), each with its own live demo and code block.
+
+**Why:**
+The raw markup used a sibling `input` + `label` pattern where the input is a visible browser-native checkbox placed before the label. The actual `go-checkbox` component hides the native input and uses an absolutely-positioned `<span>` as the visual indicator, wrapped inside the label. This DOM difference caused incorrect spacing between the checkbox and its label text in the live demo, misleading developers who referenced it as a CSS pattern guide. Using the real components ensures the live demo matches what developers will see when building with Goponents.
