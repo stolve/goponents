@@ -39,14 +39,17 @@ Five iterative fixes were made to bring the disabled button states into a consis
 
 ### 1. Normalize disabled state opacity to 0.65 + fix secondary border
 
+**Background — the `disabled-states` mixin:**
+`disabled-states($bg, $color, $color-opacity)` is a private mixin defined at the top of `go-button.component.scss`. It sets the background and text color for any disabled button variant by wrapping the passed-in color in `rgba()`. Every disabled state across primary, negative, neutral, and split buttons calls this mixin — so the opacity value here affects all of them.
+
 **What changed:**
-- `disabled-states` mixin: raised background and text opacity from `0.4` → `0.65`.
+- `disabled-states` mixin: raised background and text opacity from `0.4` → `0.65` — applied to both the `background: rgba($bg, ...)` and the `color: rgba($theme-light-color, ...)` lines inside the mixin.
 - Primary disabled button: removed the redundant `border` (the filled background already provides visual weight, a border at the same color adds nothing).
 - Secondary disabled button: changed border from a solid full-opacity `$base-light-tertiary` to `rgba($base-light-tertiary, 0.65)` so it fades in sync with the rest of the disabled state.
 - Split secondary disabled button: same border fix applied.
 
 **Why:**
-`0.4` opacity was too heavy — the button appeared nearly invisible. `0.65` is the Bootstrap-standard for disabled states and provides a clear but not jarring visual downgrade. The secondary border staying full-opacity at `0.4` overall opacity looked inconsistent.
+`0.4` opacity was too heavy — the button appeared nearly invisible. `0.65` is the Bootstrap-standard for disabled states and provides a clear but not jarring visual downgrade. Because the mixin is shared, raising the opacity improved consistency across all button variants at once. The secondary border staying full-opacity while everything else faded to `0.4` looked inconsistent.
 
 ### 2. Set secondary button font color to `$gray-600`
 
