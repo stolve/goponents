@@ -81,3 +81,20 @@ After step 3 it became clear the mixin was fighting the secondary button's desig
 
 **Why:**
 `pointer-events: none` prevents any hover or focus styles from firing on a disabled button, so the button truly looks inert on mouse-over. However, `pointer-events: none` also suppresses the cursor change — the `not-allowed` cursor was lost. Moving the cursor rule up to the container (which still receives pointer events) restores it via the `:has()` selector, giving users the correct feedback without re-enabling interactions on the button itself.
+
+---
+
+## `go-off-canvas` Form Label Padding
+
+**Date:** 2026-06-18  
+**File:** `projects/go-lib/src/lib/components/go-off-canvas/go-off-canvas.component.scss`
+
+### Fix excessive label padding and broken `:first-child` override
+
+**What changed:**
+- `padding-bottom`: `1rem` → `.25rem` (label to input gap).
+- `padding-top`: `1rem` → `.75rem` (spacing above each label / row separation).
+- `:first-child { padding-top }`: `1 rem` (invalid — space between value and unit made this a no-op) → `0` (correctly removes the leading gap above the first field).
+
+**Why:**
+The `::ng-deep` block inside `.go-off-canvas` was overriding `.go-form__label` padding to create spacing between rows and between labels and their inputs. Both values were set to `$column-gutter` (1rem), which was far too large — the default in `_forms.scss` is `.375rem`. The `:first-child` rule meant to suppress the top gap on the first field was silently ignored due to the `1 rem` typo, so every label including the first got the full 1rem top padding, compounding the problem.
