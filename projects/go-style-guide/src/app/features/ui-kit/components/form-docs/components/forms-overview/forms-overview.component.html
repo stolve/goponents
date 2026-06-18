@@ -1,4 +1,37 @@
 <section class="go-container">
+  <go-card class="go-column go-column--100" id="form-principles">
+    <ng-container go-card-header>
+      <h2 class="go-heading-2 go-heading--no-wrap">Form Design Principles</h2>
+      <go-copy cardId="form-principles" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        All forms in the platform follow these rules regardless of whether they use
+        Goponents components or raw CSS class markup.
+      </p>
+      <ol class="go-ordered-list">
+        <li class="go-ordered-list__item">
+          Use an appropriate <code class="code-block--inline">type</code> attribute on all inputs.
+        </li>
+        <li class="go-ordered-list__item">
+          Every input must have a corresponding label.
+        </li>
+        <li class="go-ordered-list__item">
+          Outlines on inputs should never be hidden — they are critical for visibility and accessibility.
+        </li>
+        <li class="go-ordered-list__item">
+          Focus outlines must correspond consistently with error states.
+        </li>
+        <li class="go-ordered-list__item">
+          Use hints as help text and for displaying validation errors.
+        </li>
+        <li class="go-ordered-list__item">
+          UI controls should never apply brand colors directly.
+        </li>
+      </ol>
+    </ng-container>
+  </go-card>
+
   <go-card class="go-column go-column--100" id="reactive-forms">
     <ng-container go-card-header>
       <h2 class="go-heading-2 go-heading--no-wrap">Reactive Forms</h2>
@@ -227,4 +260,119 @@
       </form>
     </ng-container>
   </go-card>
+
+  <!-- CSS Class Reference ------------------------------------------------- -->
+
+  <go-card class="go-column go-column--100" id="css-class-reference">
+    <ng-container go-card-header>
+      <h2 class="go-heading-2 go-heading--no-wrap">CSS Class Reference</h2>
+      <go-copy cardId="css-class-reference" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy go-body-copy--no-margin">
+        The following markup patterns document the underlying CSS classes used by Goponents form
+        components. Use these when writing server-rendered HTML or any context where the Angular
+        components are not available. The live component examples above reflect the correct visual
+        output for each pattern.
+      </p>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-basic-form">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Basic Form</h3>
+      <go-copy cardId="css-basic-form" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        A standard light-theme form using <code class="code-block--inline">.go-form</code> and the
+        <code class="code-block--inline">.go-container--form</code> grid layout.
+      </p>
+      <code [highlight]="basicForm"></code>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-dark-form">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Dark Form</h3>
+      <go-copy cardId="css-dark-form" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        Add <code class="code-block--inline">.go-form--dark</code> to the form element to apply dark
+        theme styles to all child inputs and labels. Individual elements can also use
+        <code class="code-block--inline">.go-form__input--dark</code> and
+        <code class="code-block--inline">.go-form__label--dark</code> in isolation.
+        The most common use case for dark forms is inside the Off Canvas — see the
+        <a class="go-link" routerLink="/ui-kit/off-canvas">Off Canvas docs</a> for a live example.
+      </p>
+      <code [highlight]="darkForm"></code>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-form-hints">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Form Hints</h3>
+      <go-copy cardId="css-form-hints" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        Hints follow the input they describe. Use <code class="code-block--inline">.go-hint</code>
+        for help text and <code class="code-block--inline">.go-hint--error</code> for validation
+        errors. Add a <code class="code-block--inline">.go-hint__status</code> span inside error
+        hints for accessibility.
+      </p>
+      <code [highlight]="formHints"></code>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-input-modifiers">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Text Input Modifiers</h3>
+      <go-copy cardId="css-input-modifiers" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        All inputs share three states via class modifiers. Default:
+        <code class="code-block--inline">.go-form__input</code>. Disabled: add the
+        <code class="code-block--inline">disabled</code> attribute. Error: add
+        <code class="code-block--inline">.go-form__input--error</code>. Dark theme: add
+        <code class="code-block--inline">.go-form__input--dark</code>.
+      </p>
+      <code [highlight]="inputModifiers"></code>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-select-modifiers">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Select Box Modifiers</h3>
+      <go-copy cardId="css-select-modifiers" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        Select boxes follow the same modifier pattern as text inputs using
+        <code class="code-block--inline">.go-form__select</code> as the base class.
+      </p>
+      <code [highlight]="selectModifiers"></code>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" id="css-checkbox-modifiers">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Checkbox &amp; Radio Modifiers</h3>
+      <go-copy cardId="css-checkbox-modifiers" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        Checkboxes and radios should always be grouped in a
+        <code class="code-block--inline">fieldset</code> with a
+        <code class="code-block--inline">legend</code>. Use
+        <code class="code-block--inline">.go-form__label--inline</code> to display the label
+        beside the control. Disable the entire group by adding <code class="code-block--inline">disabled</code>
+        to the fieldset.
+      </p>
+      <code [highlight]="checkboxModifiers"></code>
+    </ng-container>
+  </go-card>
+
 </section>
