@@ -154,48 +154,75 @@ export class FormsOverviewComponent {
   `;
 
   checkboxModifiers: string = `
-<form class="go-form">
-  <fieldset class="go-form__fieldset">
-    <legend class="go-form__legend">Default Options</legend>
-    <div>
-      <input class="go-form__checkbox" id="default-checkbox-1" type="checkbox" checked>
-      <label for="default-checkbox-1" class="go-form__label go-form__label--inline">Option #1</label>
-    </div>
-    <div>
-      <input class="go-form__checkbox" id="default-checkbox-2" type="checkbox">
-      <label for="default-checkbox-2" class="go-form__label go-form__label--inline">Option #2</label>
-    </div>
-  </fieldset>
+<go-checkbox-group legend="Default Options" [control]="defaultGroup">
+  <go-checkbox label="Option #1" [control]="defaultGroup.get('option1')"></go-checkbox>
+  <go-checkbox label="Option #2" [control]="defaultGroup.get('option2')"></go-checkbox>
+</go-checkbox-group>
 
-  <fieldset class="go-form__fieldset" disabled>
-    <legend class="go-form__legend">Disabled Options</legend>
-    <div>
-      <input class="go-form__checkbox" id="disabled-checkbox-1" type="checkbox" checked>
-      <label for="disabled-checkbox-1" class="go-form__label go-form__label--inline">Option #1</label>
-    </div>
-  </fieldset>
+<go-checkbox-group legend="Disabled Options" [control]="disabledGroup">
+  <!-- disabledGroup.disable() called in constructor -->
+  <go-checkbox label="Option #1" [control]="disabledGroup.get('option1')"></go-checkbox>
+  <go-checkbox label="Option #2" [control]="disabledGroup.get('option2')"></go-checkbox>
+</go-checkbox-group>
 
-  <fieldset class="go-form__fieldset go-form__fieldset--error go-form__fieldset--no-margin">
-    <legend class="go-form__legend">Error Options</legend>
-    <div>
-      <input class="go-form__checkbox" id="error-checkbox-1" type="checkbox">
-      <label for="error-checkbox-1" class="go-form__label go-form__label--inline">Option #1</label>
-    </div>
-    <p class="go-hint go-hint--error">
-      <span class="go-hint__status">Error:</span>
-      This field is required.
-    </p>
-  </fieldset>
+<go-checkbox-group legend="Error Options" [control]="errorGroup">
+  <!-- Validators.requiredTrue + markAsTouched() triggers error state -->
+  <go-checkbox label="Option #1" [control]="errorGroup.get('option1')"></go-checkbox>
+</go-checkbox-group>
 
-  <fieldset class="go-form__fieldset go-form__fieldset--dark go-form__fieldset--no-margin">
-    <legend class="go-form__legend go-form__legend--dark">Dark Options</legend>
-    <div>
-      <input class="go-form__checkbox go-form__checkbox--dark" id="dark-checkbox-1" type="checkbox" checked>
-      <label for="dark-checkbox-1" class="go-form__label go-form__label--dark go-form__label--inline">Option #1</label>
-    </div>
-  </fieldset>
-</form>
+<go-checkbox-group legend="Dark Options" theme="dark" [control]="darkGroup">
+  <go-checkbox label="Option #1" [control]="darkGroup.get('option1')"></go-checkbox>
+  <go-checkbox label="Option #2" [control]="darkGroup.get('option2')"></go-checkbox>
+</go-checkbox-group>
   `;
+
+  radioModifiers: string = `
+<go-radio-group legend="Default Options" [control]="radioControl">
+  <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+  <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+</go-radio-group>
+
+<go-radio-group legend="Disabled Options" [control]="disabledRadioControl">
+  <!-- disabledRadioControl.disable() called in constructor -->
+  <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+  <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+</go-radio-group>
+
+<go-radio-group legend="Error Options" [control]="errorRadioControl">
+  <!-- Validators.required + markAsTouched() triggers error state -->
+  <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+  <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+</go-radio-group>
+
+<go-radio-group legend="Dark Options" theme="dark" [control]="darkRadioControl">
+  <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+  <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+</go-radio-group>
+  `;
+
+  cssCheckboxDefault: FormGroup = new FormGroup({
+    option1: new FormControl(true),
+    option2: new FormControl(false)
+  });
+
+  cssCheckboxDisabled: FormGroup = new FormGroup({
+    option1: new FormControl(true),
+    option2: new FormControl(false)
+  });
+
+  cssCheckboxError: FormGroup = new FormGroup({
+    option1: new FormControl(false, Validators.requiredTrue)
+  });
+
+  cssCheckboxDark: FormGroup = new FormGroup({
+    option1: new FormControl(true),
+    option2: new FormControl(false)
+  });
+
+  cssRadioDefault: FormControl = new FormControl('option1');
+  cssRadioDisabled: FormControl = new FormControl('option1');
+  cssRadioError: FormControl = new FormControl(null, Validators.required);
+  cssRadioDark: FormControl = new FormControl('option1');
 
   themeSelect: FormControl = new FormControl('light');
 
@@ -245,6 +272,10 @@ export class FormsOverviewComponent {
     this.subNavService.linkToSource =
       'https://github.com/mobi/goponents/tree/dev/projects/go-style-guide/src/app/features/ui-kit/components/form-docs/components/forms-overview';
     this.maxBirthDate.setDate(this.maxBirthDate.getDate() - 1);
+    this.cssCheckboxDisabled.disable();
+    this.cssCheckboxError.get('option1').markAsTouched();
+    this.cssRadioDisabled.disable();
+    this.cssRadioError.markAsTouched();
     this.validationsExControl.valueChanges.subscribe((v: string) => {
       if (v !== 'Hogwarts' && v.length > 0) {
         this.validationsExControl.setErrors({ school: 'School must be Hogwarts.' });

@@ -475,86 +475,128 @@
     </ng-container>
   </go-card>
 
-  <!-- Checkbox & Radio Modifiers -->
+  <!-- Checkbox Modifiers -->
   <go-card class="go-column go-column--50" id="css-checkbox-modifiers">
     <ng-container go-card-header>
-      <h3 class="go-heading-3 go-heading--no-wrap">Checkbox &amp; Radio Modifiers</h3>
+      <h3 class="go-heading-3 go-heading--no-wrap">Checkbox Modifiers</h3>
       <go-copy cardId="css-checkbox-modifiers" goCopyCardLink></go-copy>
     </ng-container>
     <ng-container go-card-content>
       <p class="go-body-copy">
-        Checkboxes and radios should always be grouped in a
-        <code class="code-block--inline">fieldset</code> with a
-        <code class="code-block--inline">legend</code>. Use
-        <code class="code-block--inline">.go-form__label--inline</code> to display the label
-        beside the control. Disable the entire group by adding
-        <code class="code-block--inline">disabled</code> to the fieldset.
+        Use <code class="code-block--inline">go-checkbox-group</code> with
+        <code class="code-block--inline">go-checkbox</code> children.
+        Pass a <code class="code-block--inline">FormGroup</code> as <code class="code-block--inline">[control]</code>
+        and disable the group by calling <code class="code-block--inline">.disable()</code> on it.
       </p>
-      <form class="go-form">
-        <div class="go-container go-container--form">
-          <div class="go-column go-column--100">
-            <fieldset class="go-form__fieldset">
-              <legend class="go-form__legend">Select a Default Option</legend>
-              <div>
-                <input class="go-form__checkbox" id="chk-default-1" type="checkbox" checked>
-                <label for="chk-default-1" class="go-form__label go-form__label--inline">Option #1</label>
-              </div>
-              <div>
-                <input class="go-form__checkbox" id="chk-default-2" type="checkbox">
-                <label for="chk-default-2" class="go-form__label go-form__label--inline">Option #2</label>
-              </div>
-            </fieldset>
 
-            <fieldset class="go-form__fieldset" disabled>
-              <legend class="go-form__legend">Select a Disabled Option</legend>
-              <div>
-                <input class="go-form__checkbox" id="chk-disabled-1" type="checkbox" checked>
-                <label for="chk-disabled-1" class="go-form__label go-form__label--inline">Option #1</label>
-              </div>
-              <div>
-                <input class="go-form__checkbox" id="chk-disabled-2" type="checkbox">
-                <label for="chk-disabled-2" class="go-form__label go-form__label--inline">Option #2</label>
-              </div>
-            </fieldset>
+      <div style="margin-bottom: 1rem;">
+        <go-checkbox-group
+          legend="Default Options"
+          [control]="cssCheckboxDefault"
+        >
+          <go-checkbox label="Option #1" [control]="cssCheckboxDefault.get('option1')"></go-checkbox>
+          <go-checkbox label="Option #2" [control]="cssCheckboxDefault.get('option2')"></go-checkbox>
+        </go-checkbox-group>
+      </div>
 
-            <fieldset class="go-form__fieldset go-form__fieldset--error go-form__fieldset--no-margin">
-              <legend class="go-form__legend">Select an Error Option</legend>
-              <div>
-                <input class="go-form__checkbox" id="chk-error-1" type="checkbox" checked>
-                <label for="chk-error-1" class="go-form__label go-form__label--inline">Option #1</label>
-              </div>
-              <div>
-                <input class="go-form__checkbox" id="chk-error-2" type="checkbox">
-                <label for="chk-error-2" class="go-form__label go-form__label--inline">Option #2</label>
-                <p class="go-hint go-hint--error">
-                  <span class="go-hint__status">Error:</span>
-                  This input is required. Please select an option to proceed.
-                </p>
-              </div>
-            </fieldset>
-          </div>
+      <div style="margin-bottom: 1rem;">
+        <go-checkbox-group
+          legend="Disabled Options"
+          [control]="cssCheckboxDisabled"
+        >
+          <go-checkbox label="Option #1" [control]="cssCheckboxDisabled.get('option1')"></go-checkbox>
+          <go-checkbox label="Option #2" [control]="cssCheckboxDisabled.get('option2')"></go-checkbox>
+        </go-checkbox-group>
+      </div>
 
-          <div class="go-column go-column--100 go-column--dark">
-            <fieldset class="go-form__fieldset go-form__fieldset--dark go-form__fieldset--no-margin">
-              <legend class="go-form__legend go-form__legend--dark">Select a Dark Option</legend>
-              <div>
-                <input class="go-form__checkbox go-form__checkbox--dark" id="chk-dark-1" type="checkbox" checked>
-                <label for="chk-dark-1" class="go-form__label go-form__label--dark go-form__label--inline">Option #1</label>
-              </div>
-              <div>
-                <input class="go-form__checkbox go-form__checkbox--dark" id="chk-dark-2" type="checkbox">
-                <label for="chk-dark-2" class="go-form__label go-form__label--dark go-form__label--inline">Option #2</label>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </form>
+      <div style="margin-bottom: 1rem;">
+        <go-checkbox-group
+          legend="Error Options"
+          [control]="cssCheckboxError"
+        >
+          <go-checkbox label="Option #1" [control]="cssCheckboxError.get('option1')"></go-checkbox>
+        </go-checkbox-group>
+      </div>
+
+      <div class="card-form-dark" style="padding: 1rem; margin-bottom: 1rem;">
+        <go-checkbox-group
+          legend="Dark Options"
+          theme="dark"
+          [control]="cssCheckboxDark"
+        >
+          <go-checkbox label="Option #1" [control]="cssCheckboxDark.get('option1')"></go-checkbox>
+          <go-checkbox label="Option #2" [control]="cssCheckboxDark.get('option2')"></go-checkbox>
+        </go-checkbox-group>
+      </div>
     </ng-container>
   </go-card>
 
   <go-card class="go-column go-column--50" [showHeader]="false">
     <ng-container go-card-content>
       <code [highlight]="checkboxModifiers"></code>
+    </ng-container>
+  </go-card>
+
+  <!-- Radio Modifiers -->
+  <go-card class="go-column go-column--50" id="css-radio-modifiers">
+    <ng-container go-card-header>
+      <h3 class="go-heading-3 go-heading--no-wrap">Radio Modifiers</h3>
+      <go-copy cardId="css-radio-modifiers" goCopyCardLink></go-copy>
+    </ng-container>
+    <ng-container go-card-content>
+      <p class="go-body-copy">
+        Use <code class="code-block--inline">go-radio-group</code> with
+        <code class="code-block--inline">go-radio-button</code> children.
+        Pass a <code class="code-block--inline">FormControl</code> as <code class="code-block--inline">[control]</code>
+        and disable by calling <code class="code-block--inline">.disable()</code> on it.
+      </p>
+
+      <div style="margin-bottom: 1rem;">
+        <go-radio-group
+          legend="Default Options"
+          [control]="cssRadioDefault"
+        >
+          <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+          <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+        </go-radio-group>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <go-radio-group
+          legend="Disabled Options"
+          [control]="cssRadioDisabled"
+        >
+          <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+          <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+        </go-radio-group>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <go-radio-group
+          legend="Error Options"
+          [control]="cssRadioError"
+        >
+          <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+          <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+        </go-radio-group>
+      </div>
+
+      <div class="card-form-dark" style="padding: 1rem; margin-bottom: 1rem;">
+        <go-radio-group
+          legend="Dark Options"
+          theme="dark"
+          [control]="cssRadioDark"
+        >
+          <go-radio-button label="Option #1" formValue="option1"></go-radio-button>
+          <go-radio-button label="Option #2" formValue="option2"></go-radio-button>
+        </go-radio-group>
+      </div>
+    </ng-container>
+  </go-card>
+
+  <go-card class="go-column go-column--50" [showHeader]="false">
+    <ng-container go-card-content>
+      <code [highlight]="radioModifiers"></code>
     </ng-container>
   </go-card>
 
