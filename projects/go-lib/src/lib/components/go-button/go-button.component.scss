@@ -14,10 +14,10 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
       color: rgba($theme-dark-color, $color-opacity);
     }
   } @else {
-    color: rgba($theme-light-color, .4);
+    color: rgba($theme-light-color, .65);
   }
 
-  background: rgba($bg, .4);
+  background: rgba($bg, .65);
 }
 
 .go-button-container {
@@ -111,14 +111,12 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 
     &:disabled:not(.go-button--loading) {
       @include disabled-states($ui-color-primary, 'light');
-      background: rgba($ui-color-primary, 0.65);
-      border: 1px solid rgba($ui-color-primary, 0.65);
+      border: 1px solid rgba($ui-color-primary, 0);
 
       &:hover,
       &:focus,
       &:active {
-        background: rgba($ui-color-primary, 0.65);
-        border: 1px solid rgba($ui-color-primary, 0.65);
+        border: 1px solid rgba($ui-color-primary, 0);
         box-shadow: none;
       }
     }
@@ -154,12 +152,12 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 
     &:disabled:not(.go-button--loading) {
       @include disabled-states($theme-light-bg-active, 'dark');
-      border: 1px solid $base-light-tertiary;
+      border: 1px solid rgba($base-light-tertiary, 0.65);
 
       &:hover,
       &:focus {
         @include disabled-states($theme-light-bg-active, 'dark');
-        border: 1px solid $base-light-tertiary;
+        border: 1px solid rgba($base-light-tertiary, 0.65);
         box-shadow: none;
       }
     }
@@ -458,13 +456,13 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
     }
 
     &:disabled:not(.go-button--loading) {
-      border: 1px solid $base-light-tertiary;
+      border: 1px solid rgba($base-light-tertiary, 0.65);
       border-left: 0;
 
       &:hover,
       &:focus {
         background: $theme-light-bg-hover;
-        border: 1px solid $base-light-tertiary;
+        border: 1px solid rgba($base-light-tertiary, 0.65);
         border-left: 0;
         box-shadow: none;
       }
