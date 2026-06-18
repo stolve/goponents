@@ -153,11 +153,13 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 
     &:disabled:not(.go-button--loading) {
       @include disabled-states($theme-light-bg-active, 'dark');
+      background: $theme-light-bg-active;
       border: 1px solid rgba($base-light-tertiary, 0.65);
 
       &:hover,
       &:focus {
         @include disabled-states($theme-light-bg-active, 'dark');
+        background: $theme-light-bg-active;
         border: 1px solid rgba($base-light-tertiary, 0.65);
         box-shadow: none;
       }
