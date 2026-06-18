@@ -104,6 +104,32 @@ The `::ng-deep` block inside `.go-off-canvas` was overriding `.go-form__label` p
 
 ---
 
+## Standards > Forms Page Merged into UI Kit > Forms Overview
+
+**Date:** 2026-06-18  
+**Files changed:**
+- `projects/go-style-guide/src/app/features/standards/components/forms/` — **deleted**
+- `projects/go-style-guide/src/app/features/standards/routes/standards-routing.module.ts`
+- `projects/go-style-guide/src/app/features/standards/standards.module.ts`
+- `projects/go-style-guide/src/app/app.component.ts`
+- `projects/go-style-guide/src/app/features/ui-kit/components/layout-docs/components/layout-nav/layout-nav.component.ts`
+- `projects/go-style-guide/src/app/features/ui-kit/components/form-docs/components/forms-overview/forms-overview.component.html`
+- `projects/go-style-guide/src/app/features/ui-kit/components/form-docs/components/forms-overview/forms-overview.component.ts`
+
+### What changed
+
+- **Deleted** `standards/components/forms/forms.component.html` and `forms.component.ts` entirely.
+- **Routing:** Changed the `standards/forms` route from pointing to the now-deleted `FormsComponent` to a `redirectTo: 'ui-kit/forms'`, so any existing links or bookmarks continue to work.
+- **Left nav:** Removed the duplicate "Forms" link from the Standards nav group in `app.component.ts`. Updated the example nav in `layout-nav.component.ts` to reference `ui-kit/forms` instead of `standards/forms`.
+- **Module:** Removed `FormsComponent` from `StandardsModule` declarations and its import. `FormsModule` and `ReactiveFormsModule` were kept in `StandardsModule` because `GridComponent` uses `[formGroup]` and requires them.
+- **Forms Overview content:** Merged the Standards Forms page content (CSS class reference, design principles) into the existing UI Kit > Forms Overview page. The original two-column (live demo + code) layout of the Forms Overview was retained. A "Form Design Principles" card and a "CSS Class Reference" section with Basic Form, Form Hints, Text Input Modifiers, Select Box Modifiers, Checkbox Modifiers, Radio Modifiers, and Dark Forms card pairs were added.
+
+### Why
+
+The Standards > Forms page documented CSS class patterns using raw HTML markup. The UI Kit > Forms Overview already covered the same forms topic from the Angular component perspective but lacked the CSS reference. Maintaining two separate pages for the same topic created confusion — particularly because the Standards page's raw markup demos were visually incorrect (wrong spacing, missing cursor states) compared to what the actual Angular components render. Consolidating into one page under UI Kit gives developers a single authoritative reference that covers both component usage and the underlying CSS, while the redirect ensures no existing links break.
+
+---
+
 ## Forms Overview: Replace Raw Checkbox/Radio Markup with Angular Components
 
 **Date:** 2026-06-18  
