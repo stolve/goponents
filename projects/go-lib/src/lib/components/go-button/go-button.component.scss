@@ -23,6 +23,10 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 .go-button-container {
   display: inline-flex;
   position: relative;
+
+  &:has(> button:disabled) {
+    cursor: not-allowed;
+  }
 }
 
 .go-button {
@@ -47,6 +51,7 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 
   &:disabled:not(.go-button--loading) {
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   &__icon {
@@ -402,6 +407,7 @@ $button-shadow-secondary-active: 0 0 0 3px transparentize($theme-light-bg-hover,
 
   &:disabled:not(.go-button--loading) {
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   &--primary {
