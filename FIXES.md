@@ -149,3 +149,38 @@ The Standards > Forms page documented CSS class patterns using raw HTML markup. 
 
 **Why:**
 The raw markup used a sibling `input` + `label` pattern where the input is a visible browser-native checkbox placed before the label. The actual `go-checkbox` component hides the native input and uses an absolutely-positioned `<span>` as the visual indicator, wrapped inside the label. This DOM difference caused incorrect spacing between the checkbox and its label text in the live demo, misleading developers who referenced it as a CSS pattern guide. Using the real components ensures the live demo matches what developers will see when building with Goponents.
+
+---
+
+## `go-radio-button` Alignment Overhaul + Inline Spacing Fix
+
+**Date:** 2026-06-18  
+**Files:**
+- `projects/go-lib/src/lib/components/go-radio/go-radio-button.component.html`
+- `projects/go-lib/src/lib/components/go-radio/go-radio-button.component.scss`
+- `projects/go-lib/styles/_forms.scss`
+
+### Mirror checkbox pattern: hidden native input + custom indicator span
+
+**What changed:**
+- `go-radio-button.component.html`: Rewrote to mirror the checkbox pattern — native `<input type="radio">` hidden via `.go-radio__input` (opacity 0, absolute, zero width/height); added `<span class="go-radio__custom-indicator">` as the visual indicator; label element uses new `go-form__label--radio-container` modifier class.
+- `go-radio-button.component.scss`: Rewrote to match checkbox SCSS structure — `.go-radio__input` hidden, `.go-radio__custom-indicator` absolutely positioned circle; sibling selectors (`~`) drive `:checked`, `:hover`, `:focus`, `:disabled`, `:disabled:checked` states for both light and dark themes.
+- `_forms.scss`: Added `&--radio-container` modifier block (mirrors `--checkbox-container`) with `position: relative; padding-left: 1.25rem; line-height: 1.5; margin-right: 1rem; cursor: pointer; user-select: none`.
+
+**Why:**
+The original implementation rendered the native radio `<input>` inline before the label text, relying on `vertical-align` alignment. This approach was visually inconsistent with `go-checkbox` and produced misalignment between the control and its label text at standard font sizes. The checkbox pattern (absolutely positioned custom indicator inside a relatively positioned label with `padding-left` indent) is the correct approach used across the design system. The `margin-right: 1rem` on `--radio-container` prevents overlap when multiple `go-radio-button` elements appear side-by-side in the same container.
+
+---
+
+## `go-off-canvas` Submit Button Example: Missing Form Container Class
+
+**Date:** 2026-06-18  
+**File:** `projects/go-style-guide/src/app/features/ui-kit/components/basic-test-submit-button/basic-test-submit-button.component.html`
+
+### Add `go-container--form` to match service example spacing
+
+**What changed:**
+- Changed `<div class="go-container go-container--reset">` to `<div class="go-container go-container--form go-container--reset">`.
+
+**Why:**
+The "Off Canvas With Submit Button" demo lacked `go-container--form`, which applies `padding: 0 .5rem 1rem` to each `.go-column` child. Without it, form rows had no bottom padding, making the spacing visibly different from the "Using the Off Canvas Service" example that did include `go-container--form`. Adding the class makes both examples visually consistent.
